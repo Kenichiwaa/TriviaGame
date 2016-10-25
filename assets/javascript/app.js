@@ -8,14 +8,17 @@
 
 // Start Game
 
-// When game starts, list the first question and list the answers in a click function.
-// Start timer. 
+// Click game Starts
+//List the first question and the answers in a click function.
+
+// Start timer.
+
 // If user guess == right answer, stop timer, display that the user got the answer correct. 
 	// correctAnswers++
 	// Display question2
 // If user guesses wrong, display that 
 
-
+//
 
 
 
@@ -25,71 +28,92 @@
 // =================================================================
 // Arrays and variables for holding data
 
-var timeRemaining;
-
-var correctAnswers;
-
-var userAnswer;
+var correct = 0;
+var wrong = 0;
 
 var question1 = {
 	question: "Who is the main character in Lion King?",
-	rightAnswer: 1,
-	wrongAnswer: ["Jar Jar Binks", "Simba", "Scar", "Marshmello"],
+	rightAnswer: "Simba",
+	possibleAnswers: ["Jar Jar Binks", "Simba", "Scar", "Marshmello"],
 };
 
 var question2 ={
 	question: "Who took a dive in a pool of red marshmellow?",
-	rightAnswer: 0,
-	wrongAnswer: ["Boo pop","Jomal", "Dufus", "I keed"],
-};
+	rightAnswer: "Dufus",
+	possibleAnswers: ["Boo pop","Jomal", "Dufus", "I keed"],
+};		
+
+var people = ["bob", "joe", "billy", "joel", "stacy"]
+var questions = [question1, question2];
+var currentQuestion = 0;
 
 
 
-// FUNCTIONS (Reusavle vlocks of code that I will call upon when needed)
+// FUNCTIONS (Reusable blocks of code that I will call upon when needed)
 // =================================================================
-// for(var i=0; i < (question1.wrongAnswer).length; i++);
+// for(var i = 0; i < 4; i++){
+// 	var answersListOnPage =
+// 	$("<div>").html(questions[currentQuestion].possibleAnswers[i])
+// 			  .addClass('answersBox'); // Display possible answers
+// };
 
+function questionsList (){
+	// Grab element #answers
+	var answersListOnPage = document.getElementById("answers");
+
+	for (var i = 0; i < 4; i++){
+		// Creates a new div and adds class
+		var newAnswersListOnPage = document.createElement("div");
+		$(newAnswersListOnPage).addClass('answers');
+
+		// Creats content for each answer
+		newAnswersListOnPage.innerHTML = questions[currentQuestion].possibleAnswers[i];
+
+		// It then adds this new div to the drinkList div.
+		answersListOnPage.appendChild(newAnswersListOnPage);
+	}
+};
 
 function startGame (){
+if(currentQuestion == questions.length){
+	alert("gameOver!")
+}
+else{
+	questionsList ()
 
-$("#questions").html(question1.question);
+	// Display Question
+	$('#questions').html(questions[currentQuestion].question);
 
-	$("#answer1").html(question1.wrongAnswer[0]);
-	$("#answer2").html(question1.wrongAnswer[1]);
-	$("#answer3").html(question1.wrongAnswer[2]);
-	$("#answer4").html(question1.wrongAnswer[3]);
+		//On clicking an answer
+		$( ".answers" ).click(function() {
+			  $(this).addClass("clickedAnswer");
 
-	$("#answer2").click(function() {
-		  alert("Your are correct!");
-		  secondQuestion();
-	});
+			  		//If I click the correct answer, 
+				  if( $('.clickedAnswer').html() === questions[currentQuestion].rightAnswer){
+				  		alert("true!");
+				  		currentQuestion++
+				  		correct++
+				  		$(".answers").remove();
+				  		startGame();
+				  }
+				  else{
+				  	alert("wrong!")
+				  	currentQuestion++
+				  	wrong++
+				  	$(".answers").remove();
+				  	startGame();
+				  };
+				  
+		}); //End clicking answers action
 
-		$("#answer1").click(function() {
-		  alert("Wrong!");
-		  secondQuestion();
-	});
-};
+};//If currentQuestion === # of questions, end game
+}; //Function for Start Game
 
-function secondQuestion (){
-
-$("#questions").html(question2.question);
-
-	$("#answer1").html(question2.wrongAnswer[0]);
-	$("#answer2").html(question2.wrongAnswer[1]);
-	$("#answer3").html(question2.wrongAnswer[2]);
-	$("#answer4").html(question2.wrongAnswer[3]);
-
-	$("#answer3").click(function() {
-		  alert("Your are correct!");
-		  secondQuestion();
-	});
-
-};
 
 
 // MAIN PROCESS
 // =================================================================
-startGame();
+startGame(); // Start Game
 
 
 
