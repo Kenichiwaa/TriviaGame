@@ -32,19 +32,48 @@ var correct = 0;
 var wrong = 0;
 
 var question1 = {
-	question: "Who is the main character in Lion King?",
-	rightAnswer: "Simba",
-	possibleAnswers: ["Jar Jar Binks", "Simba", "Scar", "Marshmello"],
+	question: "'Godzilla' is a nickname for which sports car?",
+	rightAnswer: "Nissan GT-R",
+	possibleAnswers: ["Ferrari 458 Italia", "Nissan GT-R", "Godzilla is a Giant Lizard smh.", "Who is Marshmello"],
+	image: ["http://www.stancenation.com/wp-content/uploads/2012/07/1310.jpg"],
+	explanation: ["The Nissan GT-R held the Track Record for production cars at the Nürburgring Northloop, the most difficult racetrack of the world, until the Porsche 996."]
 };
 
 var question2 ={
-	question: "Who took a dive in a pool of red marshmellow?",
-	rightAnswer: "Dufus",
-	possibleAnswers: ["Boo pop","Jomal", "Dufus", "I keed"],
-};		
+	question: "When was the electric car invented?",
+	rightAnswer: "1834",
+	possibleAnswers: ["1834", "1934", "2001", "2034"],
+	image: ["http://www.automostory.com/images/first-electric-car.jpg"],
+	explanation: ["In the beginning, only EV automobiles were in production. It was only after the invention of the alternator, did petrol vehicles become popular."]
+};	
 
-var people = ["bob", "joe", "billy", "joel", "stacy"]
-var questions = [question1, question2];
+var question2 ={
+	question: "To participate in the The 'Peking to Paris Rally' vintageant category, how old does your car have to be?",
+	rightAnswer: "1941 or older",
+	possibleAnswers: ["1990 or older","SpaceShips Dude Com'on!", "1941 or older", "1975 or older"],
+	image: ["http://vintagebentley.com/wp-content/uploads/p2p-header.jpeg"],
+};	
+
+var question3 ={
+	question: "What is the largest category in the Dakar Rally Race?",
+	rightAnswer: "trucks",
+	possibleAnswers: ["32 inch Chome Wheels Yo!", "Trucks", "Apache Helicopters", "Tanks"],
+	image: ["https://s-media-cache-ak0.pinimg.com/originals/2e/98/ab/2e98abee4e48319c8bd7332782593990.jpg"],
+};
+
+var question4 ={
+	question: "What is the largest category in the Dakar Rally?",
+	rightAnswer: "trucks",
+	possibleAnswers: ["automobiles with 22 inch chome wheels yo!", "trucks", "apache helicopters", "tanks"],
+};
+
+var question4 ={
+	question: "What is the largest category in the Dakar Rally?",
+	rightAnswer: "trucks",
+	possibleAnswers: ["automobiles with 22 inch chome wheels yo!", "trucks", "apache helicopters", "tanks"],
+};
+
+var questions = [question1, question2, question3];
 var currentQuestion = 0;
 
 
