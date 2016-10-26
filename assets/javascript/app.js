@@ -37,7 +37,7 @@ var question1 = {
 	rightAnswer: "Nissan GT-R",
 	possibleAnswers: ["Ferrari 458 Italia", "Nissan GT-R", "Godzilla is a Giant Lizard smh.", "Who is Marshmello"],
 	image: ["https://torquepost.files.wordpress.com/2012/06/800px-r32gtr.jpg"],
-	explanation: ["The Australian auto press began to call the car “Godzilla” because it was a new monster from Japan. The car had such an enormous winning potential, that it actually broke apart Group A Racing in Australia because of its dominance, much like the original Audi Quattro did in Group B Rallying."]
+	explanation: ["Answer: <b>Nissan GT-R</b> <br /> The Australian auto press began to call the car “Godzilla” because it was a new monster from Japan. The car had such an enormous winning potential, that it actually broke apart Group A Racing in Australia because of its dominance, much like the original Audi Quattro did in Group B Rallying."],
 };
 
 var question2 ={
@@ -45,7 +45,7 @@ var question2 ={
 	rightAnswer: "1834",
 	possibleAnswers: ["1834", "1934", "2001", "2034"],
 	image: ["http://www.automostory.com/images/first-electric-car.jpg"],
-	explanation: ["In the beginning, only EV automobiles were in production. It was only after the invention of the alternator, did petrol vehicles become popular."]
+	explanation: ["Answer: <b>1834</b> <br /> In the beginning, only EV automobiles were in production. It was only after the invention of the alternator, did petrol vehicles become popular."],
 };	
 
 var question3 ={
@@ -53,22 +53,23 @@ var question3 ={
 	rightAnswer: "1941",
 	possibleAnswers: ["1956","Dude! Spaceships!", "1941", "1975"],
 	image: ["http://vintagebentley.com/wp-content/uploads/p2p-header.jpeg"],
+		explanation: ["Answer: <b>1834</b> <br /> The cars are divided into two age categories... the Vintageant category for pre 1941 model types or the Classic category production before 1975. "],
 };	
 
-var question3 ={
+var question4 ={
 	question: "What is the largest category in the Dakar Rally Race?",
 	rightAnswer: "Trucks",
 	possibleAnswers: ["32 inch Chome Wheels Yo!", "Trucks", "Apache Helicopters", "Tanks"],
 	image: ["https://s-media-cache-ak0.pinimg.com/originals/2e/98/ab/2e98abee4e48319c8bd7332782593990.jpg"],
 };
 
-var question4 ={
+var question5 ={
 	question: "What is the largest category in the Dakar Rally?",
 	rightAnswer: "trucks",
 	possibleAnswers: ["automobiles with 22 inch chome wheels yo!", "trucks", "apache helicopters", "tanks"],
 };
 
-var question4 ={
+var question6 ={
 	question: "What is the largest category in the Dakar Rally?",
 	rightAnswer: "trucks",
 	possibleAnswers: ["automobiles with 22 inch chome wheels yo!", "trucks", "apache helicopters", "tanks"],
@@ -78,7 +79,8 @@ var questions = [question1, question2, question3];
 var currentQuestion = 0;
 
 var button = '<p><a class="btn btn-primary btn-lg" href="#" role="button">Next</a></p>';
-
+var buttonStart = '<p><a class="btn btnstart btn-primary btn-lg" href="#" role="button">Start</a></p>';
+// var buttonPlayAgain = '<p><a class="btn btnplay btn-primary btn-lg" href="#" role="button">Play Again</a></p>';
 
 // FUNCTIONS (Reusable blocks of code that I will call upon when needed)
 // =================================================================
@@ -124,7 +126,7 @@ function answersExplained(){
 
 	$(".btn").click(function(){
 		$("#answersExplanation").empty();
-		number = 5;
+		number = 10;
 		counter = setInterval(decrement, 1000);
 		startGame(); 
 	}); 
@@ -137,9 +139,14 @@ function startGame (){
         	clearInterval(counter);
 		$("#answersExplanation").html('<p>Correct: ' + correct + '</p>')
 								.append('<p>Wrong: ' + wrong + '</p>')
-								.append('<p>Unanswered: ' + unanswered + '</p>');	
-	return false;
+								.append('<p>Unanswered: ' + unanswered + '</p>')
+								// .append('<p>Play Again: ' + buttonPlayAgain + '</p>');	
+		$("#questions").text("Game Over!");	
 
+			// $( ".btnplay" ).click(function() {
+			// 	startGame();// Start Game
+			// 	run();
+			// });
 
 	}
 	else{
@@ -175,7 +182,7 @@ function startGame (){
 }; //Function for Start Game
 
         // Set our number counter to 100.
-        var number = 5;
+        var number = 10;
 
         function run(){
             counter = setInterval(decrement, 1000);
@@ -186,7 +193,7 @@ function startGame (){
             // Decrease number by one.
             number--;
             // Show the number in the #show-number tag.
-            $('#show-number').html('<h2>' + number + '</h2>');
+            $('#show-number').html('<h3>Time Remaining: ' + number + '</h3>');
 
             // Once number hits zero...
             if (number === 0){
@@ -204,11 +211,12 @@ function startGame (){
 
 // MAIN PROCESS
 // =================================================================
-startGame(); // Start Game
 
-run();
-
-
+$("#questions").html(buttonStart);
+$( ".btnstart" ).click(function() {
+	startGame();// Start Game
+	run();
+});
 
 
 
