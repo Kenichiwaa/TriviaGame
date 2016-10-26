@@ -30,13 +30,14 @@
 
 var correct = 0;
 var wrong = 0;
+var unanswered =0;
 
 var question1 = {
 	question: "'Godzilla' is a nickname for which sports car?",
 	rightAnswer: "Nissan GT-R",
 	possibleAnswers: ["Ferrari 458 Italia", "Nissan GT-R", "Godzilla is a Giant Lizard smh.", "Who is Marshmello"],
-	image: ["http://www.stancenation.com/wp-content/uploads/2012/07/1310.jpg"],
-	explanation: ["The Nissan GT-R held the Track Record for production cars at the Nürburgring Northloop, the most difficult racetrack of the world, until the Porsche 996."]
+	image: ["https://torquepost.files.wordpress.com/2012/06/800px-r32gtr.jpg"],
+	explanation: ["The Australian auto press began to call the car “Godzilla” because it was a new monster from Japan. The car had such an enormous winning potential, that it actually broke apart Group A Racing in Australia because of its dominance, much like the original Audi Quattro did in Group B Rallying."]
 };
 
 var question2 ={
@@ -119,22 +120,27 @@ function answersExplained(){
 							.append(button)
 							.addClass("answersExplanation");
 	currentQuestion++
-	correct++	
 	$(".answers").remove();
 
 	$(".btn").click(function(){
-		startGame(); 
 		$("#answersExplanation").empty();
 		number = 5;
 		counter = setInterval(decrement, 1000);
+		startGame(); 
 	}); 
 };
 
 
 function startGame (){
+	// If there are no more questions left...
 	if(currentQuestion == questions.length){
-		alert(correct)
-		$("#answersExplanation").html('<p>' + correct + '</p>').append(wrong);
+        	clearInterval(counter);
+		$("#answersExplanation").html('<p>Correct: ' + correct + '</p>')
+								.append('<p>Wrong: ' + wrong + '</p>')
+								.append('<p>Unanswered: ' + unanswered + '</p>');	
+	return false;
+
+
 	}
 	else{
 		questionsList () // Grabs answers to the question 
@@ -148,6 +154,7 @@ function startGame (){
 
 				  	  //If I click the correct answer..
 					  if( $('.clickedAnswer').html() === questions[currentQuestion].rightAnswer){
+					  			correct++	
 					  			answersExplained()
 					  			stop();
 					  			$("#questions").text("Correct!");	
@@ -156,17 +163,16 @@ function startGame (){
 
 					  // If I click the wrong answer..
 					  else{  
+					  	wrong++
 					  	answersExplained()
 					  	stop();
 					  	$("#questions").text("Wrong!");	
 					  }; // End else I click the wrong answer 
 					  
 			}); //End clicking answers action
-		
+
 	};//If currentQuestion === # of questions, end game
 }; //Function for Start Game
-
-
 
         // Set our number counter to 100.
         var number = 5;
@@ -184,19 +190,16 @@ function startGame (){
 
             // Once number hits zero...
             if (number === 0){
-                // ...run the stop function.
-                stop();
-				answersExplained(); 	
+                stop(); // ...run the stop function.
+				answersExplained(); 
+				unanswered++	
             }
         }
 
         function stop(){
         	clearInterval(counter);
         	$("#questions").text("Time is Up!");
-            // Clears our "counter" interval.
-            // We just pass the name of the interval
-            // to the clearInterval function.
-            //clearInterval(counter);
+
         }
 
 // MAIN PROCESS
